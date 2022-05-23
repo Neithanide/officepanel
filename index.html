@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <style>
+            @font-face {
+            font-family: Writing;
+            src: url(assets/ShadowsIntoLight-Regular.ttf);
+            }
+            body{
+                overflow: hidden;
+                font-family: Writing;
+                color: white;
+                background-color: rgb(43, 41, 41);
+            }
+            .imagen{
+                position: relative;
+                top: -25%;
+                border-radius: 50px;
+            }
+            .imagen:hover{
+                cursor: grab;
+            }
+            #imagen5:hover{
+                cursor: url("imagenes/Forbidden.png"),auto;
+            }
+            #imagen6:hover{
+                cursor: url("imagenes/Forbidden.png"),auto;
+            }
+            .contenedorleft{
+                width: 100px;
+                height: 100px;
+                border: 1px solid rgb(49, 47, 47);
+                left: 0px;
+                margin-top: 10px;
+                background-image: url("imagenes/socket.png");
+                border-radius: 50px;
+            }
+            .contenedorright{
+                width: 100px;
+                height: 100px;
+                border: 1px solid rgb(49, 47, 47);;
+                margin-top: 10px;
+                position: relative;
+                left: 90%;
+                top: -28em;
+                background-image: url("imagenes/socket.png");
+                border-radius: 50px;
+            }
+            #note{
+                width: 300px;
+                height: 400px;
+                background-image: url("imagenes/note.png");
+                margin-left: 50%;
+                margin-right: 50%;
+                position: absolute;
+                top: 90%;
+                transition-duration: 500ms;
+                box-sizing:border-box;
+                padding: 15px;
+                color: #252527;
+            }
+            #note:hover{
+                top: 40%;
+                transition-duration: 500ms;
+            }
+            #score{
+                width: 600px;
+                height: 400px;
+                position: absolute;
+                top: 5%;
+                left: 25%;
+            }
+        </style>
+        <script type="text/javascript">
+        var imagen1;
+        var imagen2;
+        var imagen3;
+        var imagen4;
+        var clearTimeAux;
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+        function drop(ev) {
+            if(ev.target.hasChildNodes()==true){
+                if(ev.dataTransfer.getData("text")=="imagen1"){
+                    imagen1=ev.target.id;console.log(imagen1);
+                }
+                if(ev.dataTransfer.getData("text")=="imagen2"){
+                    imagen2=ev.target.id;console.log(imagen2);
+                }
+                if(ev.dataTransfer.getData("text")=="imagen3"){
+                    imagen3=ev.target.id;console.log(imagen3);
+                }
+                if(ev.dataTransfer.getData("text")=="imagen4"){
+                    imagen4=ev.target.id;console.log(imagen4);
+                }
+
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+            clearTimeout(clearTimeAux);
+            clearTimeAux=setTimeout(comprobar,2500);
+            }
+        }
+        function comprobar(){
+            if(imagen1=="contenedorDefault4"){
+                if(imagen2=="contenedorFinal2"){
+                    if(imagen3=="contenedorDefault2"){
+                        if(imagen4=="contenedorDefault1"){
+                            document.getElementById('score').style.backgroundImage="url(imagenes/score.png)";
+                            setTimeout(() => {
+                                document.getElementById('score').style.backgroundImage="";
+                            }, 10000);
+                        }
+                    }
+                }
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <div id="contenedorDefault1" class="contenedorleft" ondrop='drop(event)' ondragover='allowDrop(event)'>
+            A<img id="imagen1" class="imagen" src="imagenes/imagen1.png" draggable="true" ondragstart="drag(event)"></div>
+        <div id="contenedorDefault2" class="contenedorleft" ondrop='drop(event)' ondragover='allowDrop(event)'>
+            B<img id="imagen2" class="imagen" src="imagenes/imagen2.png" draggable="true" ondragstart="drag(event)"></div>
+        <div id="contenedorDefault3" class="contenedorleft" ondrop='drop(event)' ondragover='allowDrop(event)'>
+            C<img id="imagen3" class="imagen" src="imagenes/imagen3.png" draggable="true" ondragstart="drag(event)"></div>
+        <div id="contenedorDefault4" class="contenedorleft" ondrop='drop(event)' ondragover='allowDrop(event)'>
+            D<img id="imagen4" class="imagen" src="imagenes/imagen4.png" draggable="true" ondragstart="drag(event)"></div>
+        <div id="contenedorFinal1" class="contenedorright" ondrop='drop(event)' ondragover='allowDrop(event)'>1<img id="imagen5" class="imagen" src="imagenes/imagen5.png" draggable="false"></div>
+        <div id="contenedorFinal2" class="contenedorright" ondrop='drop(event)' ondragover='allowDrop(event)'>2</div>
+        <div id="contenedorFinal3" class="contenedorright" ondrop='drop(event)' ondragover='allowDrop(event)'>3</div>
+        <div id="contenedorFinal4" class="contenedorright" ondrop='drop(event)' ondragover='allowDrop(event)'>4<img id="imagen6" class="imagen" src="imagenes/imagen6.png" draggable="false"></div>
+        <div id="note"><br>¡Hola!, verás, resulta que se ha ido la luz en la oficina, 
+            pero yo no recuerdo bien en que orden iban los fusibles, ya sabes que la 
+            instalación es antigua y es un poco especial.
+            <br>Lo único que recuerdo es que:
+            <br>*La <span style="color: #368f1b;">VERDE</span> sé que no iba en la posición A.
+            <br>*La <span style="color: #1b6e8f;">AZUL</span> recuerdo que estaba justo bajo la <span style="color: #cf8e14;">NARANJA</span> y frente a la <span style="color: #c22079;">ROSA</span>.
+            <br>*La <span style="color: #cf8e14;">NARANJA</span> iba frente a su color complementario.
+            <br>*En ambos lados había <span style="color: #d42721;">DOS</span> huecos vacíos enfrentados.
+        </div>
+        <div id="score"></div>
+    </body>
+</html>
